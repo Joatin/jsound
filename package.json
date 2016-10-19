@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./release/server/server",
-    "serve": "gulp serve"
+    "serve": "gulp serve",
+    "postinstall": "bower install"
   },
   "repository": {
     "type": "git",
@@ -27,16 +28,17 @@
     "@angular/platform-browser": "~2.1.0",
     "@angular/platform-browser-dynamic": "~2.1.0",
     "@angular/router": "~3.1.0",
+    "@vaadin/angular2-polymer": "^1.0.0-beta5",
     "core-js": "^2.4.1",
     "reflect-metadata": "^0.1.8",
-    "rxjs": "5.0.0-beta.12",
-    "systemjs": "0.19.39",
-    "zone.js": "^0.6.25",
     "rethinkdb": "^2.3.3",
+    "rxjs": "5.0.0-beta.12",
     "socketcluster": "^5.0.18",
     "socketcluster-client": "^5.0.13",
     "spdy": "^3.4.0",
-    "winston": "^2.2.0"
+    "systemjs": "0.19.39",
+    "winston": "^2.2.0",
+    "zone.js": "^0.6.25"
   },
   "devDependencies": {
     "browser-sync": "^2.17.5",

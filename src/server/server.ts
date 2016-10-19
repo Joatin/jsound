@@ -1,23 +1,16 @@
 import {SocketCluster} from 'socketcluster';
+import * as os from 'os';
+import * as path from 'path';
+
+const numCpus = os.cpus().length;
+console.log(numCpus);
 let socketCluster = new SocketCluster({
-  workers: 1, // Number of worker processes
-  brokers: 1, // Number of broker processes
-  port: 8000, // The port number on which your server should listen
-  appName: 'jsound', // A unique name for your app
-
-  // Switch wsEngine to 'uws' for a MAJOR performance boost (beta)
+  workers: process.env.NUM_WORKERS || numCpus,
+  brokers: 1,
+  port: process.env.PORT || 8000,
+  appName: 'jsound',
   wsEngine: 'ws',
-
-  /* A JS file which you can use to configure each of your
-   * workers/servers - This is where most of your backend code should go
-   */
-  workerController: __dirname + '/worker.js',
-
-  /* JS file which you can use to configure each of your
-   * brokers - Useful for scaling horizontally across multiple machines (optional)
-   */
-  brokerController: __dirname + '/broker.js',
-
-  // Whether or not to reboot the worker in case it crashes (defaults to true)
-  rebootWorkerOnCrash: false
+  workerController: path.join(__dirname, '/worker/worker.js'),
+  brokerController: path.join(__dirname, '/broker/broker.js'),
+  rebootWorkerOnCrash: true
 });

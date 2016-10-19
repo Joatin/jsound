@@ -16,7 +16,8 @@
   ],
   "exclude": [
     "src/client/**/*.ts",
-    "node_modules"
+    "node_modules",
+    "bower_components"
   ]
 }
 

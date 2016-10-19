@@ -24,6 +24,9 @@
             // other libraries
             'rxjs':                      'npm:rxjs',
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
+
+
+            '@vaadin/angular2-polymer': 'npm:@vaadin/angular2-polymer',
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -35,6 +38,10 @@
                 defaultExtension: 'js'
             },
             'angular-in-memory-web-api': {
+                main: './index.js',
+                defaultExtension: 'js'
+            },
+            '@vaadin/angular2-polymer': {
                 main: './index.js',
                 defaultExtension: 'js'
             }

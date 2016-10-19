@@ -39,3 +39,5 @@ jspm_packages
 .idea/
 
 build/
+
+bower_components/

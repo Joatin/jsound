@@ -65,7 +65,7 @@ gulp.task('copy-files-watch', ['copy-files'], function(done) {
 
 gulp.task('serve', ['build'], function () {
     nodemon({
-        script: './build/server/server.js',
+        script: './build/development/server/server.js',
         watch: './build/development/server'
     }).on('start', function(){
         browserSync.reload()
@@ -75,7 +75,8 @@ gulp.task('serve', ['build'], function () {
             baseDir: "./build/development/client",
             middleware: [historyApiFallback({index: '/index.html'})],
             routes: {
-                "/node_modules": "node_modules"
+                "/node_modules": "node_modules",
+                "/bower_components": "bower_components"
             }
         }
     });
