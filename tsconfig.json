@@ -1,0 +1,23 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": false,
+    "noImplicitAny": false,
+    "rootDir": "src/client",
+    "allowJs": true
+  },
+  "include": [
+    "src/client/**/*.ts"
+  ],
+  "exclude": [
+    "src/server/**/*.ts",
+    "node_modules"
+  ]
+}
+
