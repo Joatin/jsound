@@ -1,0 +1,37 @@
+style.
+    paper-fab {
+        position: absolute;
+        bottom: 50px;
+        right: 50px;
+    }
+    paper-dialog-scrollable form{
+        @apply(--layout-horizontal);
+    }
+
+    paper-dialog{
+        @apply(--layout-flex-8);
+    }
+
+    #basic, #advanced {
+        @apply(--layout-vertical);
+    }
+
+paper-fab(icon="mdi:plus", (click)="open.emit()")
+
+paper-dialog(#dialog, modal, [opened]="opened")
+    h2 Add Hall
+    paper-dialog-scrollable
+        form(#addForm="ngForm")
+            div#basic
+                h4 Basic
+                paper-input(label="Hall Name", required, auto-validate, [(ngModel)]="model.name", name="name", (input)="change()")
+                paper-input(label="Address", [(ngModel)]="model.address", name="address", (input)="change()")
+                paper-input(label="Address2", [(ngModel)]="model.address2", name="address2", (input)="change()")
+                paper-input(label="Zip Code", [(ngModel)]="model.zipCode", name="zipCode", (input)="change()")
+                paper-input(label="City", [(ngModel)]="model.city", name="city", (input)="change()")
+            div#advanced
+                h4 Advanced
+                paper-input(label="Hall Controller UUID")
+    div.buttons
+        paper-button((click)="close.emit(false)") Cancel
+        paper-button((click)="close.emit(true)", [disabled]="!addForm.form.valid") Accept

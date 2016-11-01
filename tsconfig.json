@@ -4,21 +4,17 @@
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
-    "sourceMap": true,
+    "sourceMap": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "removeComments": false,
-    "noImplicitAny": false,
-    "rootDir": "src/client",
-    "allowJs": true
+    "removeComments": true,
+    "noImplicitAny": false
   },
-  "include": [
-    "src/client/**/*.ts"
-  ],
   "exclude": [
-    "src/server/**/*.ts",
+    "src/server",
     "node_modules",
-    "bower_components"
+    "bower_components",
+    "typings"
   ]
 }
 

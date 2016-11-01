@@ -1,6 +1,8 @@
 
 
-export function run(broker: any){
+export class Broker {
 
-
+    static main() {
+        console.log('broker running');
+    }
 }

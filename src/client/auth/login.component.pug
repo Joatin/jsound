@@ -1,0 +1,24 @@
+style.
+    :host {
+        @apply (--layout-flex);
+        @apply (--layout-vertical);
+    }
+    .mainContainer {
+        @apply (--layout-vertical);
+        @apply (--layout-flex);
+    }
+
+    .container {
+        @apply (--layout-horizontal);
+    }
+div.mainContainer
+    div.flex
+    div.container
+        div.flex
+        form((ngSubmit)="login()")
+            h2 Login
+            paper-input(label="User Name", [(value)]="username")
+            paper-input(label="Password", type="password", [(value)] = "password", (keyup.enter)="login()")
+            paper-button(type="submit", (click)="login()") Login
+        div.flex
+    div.flex
