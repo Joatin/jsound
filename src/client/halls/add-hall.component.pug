@@ -29,9 +29,6 @@ paper-dialog(#dialog, modal, [opened]="opened")
                 paper-input(label="Address2", [(ngModel)]="model.address2", name="address2", (input)="change()")
                 paper-input(label="Zip Code", [(ngModel)]="model.zipCode", name="zipCode", (input)="change()")
                 paper-input(label="City", [(ngModel)]="model.city", name="city", (input)="change()")
-            div#advanced
-                h4 Advanced
-                paper-input(label="Hall Controller UUID")
     div.buttons
         paper-button((click)="close.emit(false)") Cancel
         paper-button((click)="close.emit(true)", [disabled]="!addForm.form.valid") Accept

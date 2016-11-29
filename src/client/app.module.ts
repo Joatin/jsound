@@ -1,4 +1,4 @@
-import {NgModule, NgZone, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -6,10 +6,8 @@ import {RouterStoreModule, routerReducer} from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
 import { AppComponent }   from './app.component';
 import {AppRoutingModule} from "./app-routing.module";
-import { PolymerElement } from '@vaadin/angular2-polymer';
 import {DashboardComponent} from "./dashboard.component";
 import {MainSidenavComponent} from "./sidenav/main-sidenav.component";
-import {reducer} from "./reducers/index";
 import {HallListComponent} from "./halls/hall-list.component";
 import {HallComponent} from "./halls/hall.component";
 import * as socketCluster from 'socketcluster-client';
@@ -27,6 +25,9 @@ import {HallService} from "./halls/hall.service";
 import {HallWelcomeComponent} from "./halls/hall-welcome.component";
 import {HallSettingsComponent} from "./halls/hall-settings.component";
 import {AudioComponent} from "./audio/audio.component";
+import {ControllerSettingsComponent} from "./halls/settings/controller-settings.component";
+import {PolymerModule} from "./polymer.module";
+import {HallModule} from "./halls/hall.module";
 
 const socket = socketCluster.connect({port: 8000});
 
@@ -50,31 +51,17 @@ const socket = socketCluster.connect({port: 8000});
         StoreDevtoolsModule.instrumentOnlyWithExtension(),
         EffectsModule.run(AuthEffects),
         EffectsModule.run(HallEffects),
+        PolymerModule,
+        HallModule
     ],
     declarations: [
         AppComponent,
         DashboardComponent,
         MainSidenavComponent,
-        HallListComponent,
-        HallComponent,
         LoginComponent,
         AddHallComponent,
-        HallWelcomeComponent,
         HallSettingsComponent,
-        AudioComponent,
-        PolymerElement('paper-drawer-panel'),
-        PolymerElement('paper-header-panel'),
-        PolymerElement('paper-icon-button'),
-        PolymerElement('paper-toolbar'),
-        PolymerElement('paper-menu'),
-        PolymerElement('paper-item'),
-        PolymerElement('paper-card'),
-        PolymerElement('paper-button'),
-        PolymerElement('paper-input'),
-        PolymerElement('iron-icon'),
-        PolymerElement('paper-fab'),
-        PolymerElement('paper-dialog'),
-        PolymerElement('paper-dialog-scrollable'),
+        AudioComponent
     ],
     providers: [
         AuthService,

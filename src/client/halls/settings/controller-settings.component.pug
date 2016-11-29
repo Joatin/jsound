@@ -1,0 +1,6 @@
+h1 Hello World!
+div
+    div(*ngIf="!(halls$ | async)?.controllerId")
+        h3 No controller set
+        paper-button Sync controller
+add-controller([opened]="addControllerOpened$ | async", (open)="modalOpen()", (close)="modalClose($event)", [model]="addControllerModel$ | async", (modelChange)="modelChange($event)")

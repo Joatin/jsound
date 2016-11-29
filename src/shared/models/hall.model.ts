@@ -7,6 +7,7 @@ export interface Hall {
     address2: string;
     zipCode: string;
     city: string;
+    controllerId?: string;
 }
 
 export function getEmptyHall(): Hall{

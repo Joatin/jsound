@@ -8,9 +8,11 @@ import {RethinkUserRepository} from "./rethink-user.repository";
 import {Seeder} from "./seeder";
 import {HallRepository} from "./hall.repository";
 import {RethinkHallRepository} from "./rethink-hall.repository";
-import {OperationObservable} from "./operation.observable";
 import * as _ from 'underscore';
 import {CreateResult} from "rethinkdb";
+import {OperationObservable} from "./util/operation.observable";
+import {ControllerRepository} from "./controller.repository";
+import {RethinkControllerRepository} from "./rethink-controller.repository";
 
 
 export class RethinkDatabase implements Database {
@@ -20,12 +22,11 @@ export class RethinkDatabase implements Database {
 
     private userRepository: UserRepository;
     private hallRepository: HallRepository;
+    private controllerRepository: ControllerRepository;
 
     public constructor(private options: {host: string, port: number, db?: string},
                        private logger: Logger,) {
         this.databaseName = options.db || 'test';
-        this.userRepository = new RethinkUserRepository(this);
-        this.hallRepository = new RethinkHallRepository(this);
     }
 
     public get users(): UserRepository {
@@ -36,11 +37,18 @@ export class RethinkDatabase implements Database {
         return this.hallRepository;
     }
 
+    public get controllers(): ControllerRepository {
+        return this.controllerRepository;
+    }
+
     public connect(seeders?: Seeder[]): Observable<void> {
         let connect = Observable.bindNodeCallback(rethink.connect);
         let observable = connect({host: 'localhost', port: 28015});
         return observable.map((connection: Connection) => {
             this.connection = connection;
+            this.userRepository = new RethinkUserRepository(this.connection);
+            this.hallRepository = new RethinkHallRepository(this.connection);
+            this.controllerRepository = new RethinkControllerRepository(this.connection);
             return connection;
         })
             .flatMap(()=> {

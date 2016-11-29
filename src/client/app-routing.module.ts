@@ -9,20 +9,12 @@ import {AuthGuard} from "./auth/auth-guard.service";
 import {HallWelcomeComponent} from "./halls/hall-welcome.component";
 import {HallSettingsComponent} from "./halls/hall-settings.component";
 import {AudioComponent} from "./audio/audio.component";
+import {ControllerSettingsComponent} from "./halls/settings/controller-settings.component";
 
 const routes: Routes = [
     { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-    { path: 'login', component: LoginComponent },
-    { path: 'halls', canActivate: [AuthGuard], children: [
-            {path: ':hallId', component: HallComponent, children: [
-                {path: 'audio', component: AudioComponent},
-                {path: 'settings', component: HallSettingsComponent},
-                {path: '', component: HallWelcomeComponent},
-            ]},
-            {path: '', component: HallListComponent}
-        ]
-    }
+    { path: 'login', component: LoginComponent }
 ];
 @NgModule({
     imports: [ RouterModule.forRoot(routes) ],

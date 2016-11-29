@@ -2,6 +2,9 @@
 import {Logger} from "../shared/logger/logger";
 import {Socket} from "./socket";
 import {Database} from "../shared/database/database";
+import {parse} from "url";
+import {ScSocket} from "./sc-socket";
+import {DeviceSocket} from "./device/device.socket";
 export interface ISocketClusterWorker {
     id: number;
     on(event: string, handler: () => void): void;
@@ -77,7 +80,13 @@ export abstract class ScWorker {
 
     private handleOnConnection(socket) {
         this.logger.debug('new connection');
-        let sock = new Socket(socket, this.logger, this.database);
+        let parts = parse(socket.request.url, true);
+        let sock: ScSocket = null;
+        if(parts.query.device){
+            sock = new DeviceSocket(socket, this.logger, this.database);
+        }else{
+            sock = new Socket(socket, this.logger, this.database);
+        }
         sock.init();
         if(this.onConnect){
             this.onConnect(sock);

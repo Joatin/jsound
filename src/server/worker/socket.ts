@@ -18,9 +18,11 @@ const Events = {
 
 export class Socket extends ScSocket {
 
-    constructor(socket: any,
-                private logger: Logger,
-                private database: Database) {
+    constructor(
+        socket: any,
+        private logger: Logger,
+        private database: Database
+    ) {
         super(socket, logger);
     }
 
