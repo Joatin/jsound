@@ -1,0 +1,31 @@
+{
+  "name": "jsound-client-api",
+  "version": "1.0.0-alpha.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "ci:travis": "npm run test",
+    "lint": "npm run tslint \"src/**/*.ts\"",
+    "start": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joatin/jsound-client-api.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Joatin/jsound-client-api/issues"
+  },
+  "homepage": "https://github.com/Joatin/jsound-client-api#readme",
+  "devDependencies": {
+    "@types/node": "^7.0.29",
+    "nodemon": "^1.11.0",
+    "ts-node": "^3.0.6",
+    "typescript": "^2.3.4"
+  },
+  "dependencies": {
+
+  }
+}
