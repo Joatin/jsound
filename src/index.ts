@@ -1,4 +1,4 @@
-import { Application } from './application';
+import { Application } from './app/application';
 
 function main(){
   const app = new Application();
