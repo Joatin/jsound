@@ -3,17 +3,14 @@ dist: trusty
 
 jobs:
   include:
-    - stage: test
-      language: node_js
-      node_js:
-        - "6"
-        - "7"
-        - "node"
-      install:
-        - yarn
-      script:
-        - yarn ci:travis
-      cache:
-        directories:
-          - node_modules
-    - stage: deploy
+  - stage: test
+    language: node_js
+    node_js: '7'
+    install:
+    - yarn
+    script:
+    - yarn ci:travis
+    cache:
+      directories:
+      - node_modules
+  - stage: deploy

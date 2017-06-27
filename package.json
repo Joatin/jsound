@@ -67,5 +67,10 @@
     "require": [
       "ts-node/register"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   }
 }
