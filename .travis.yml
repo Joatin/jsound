@@ -14,3 +14,15 @@ jobs:
       directories:
       - node_modules
   - stage: deploy
+    branches:
+      only:
+      - master
+    language: node_js
+    node_js: '7'
+    install:
+    - yarn
+    script:
+    - yarn docker
+    cache:
+      directories:
+      - node_modules
