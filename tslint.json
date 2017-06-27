@@ -3,6 +3,12 @@
     "tslint:recommended"
   ],
   "rules": {
-
+    "trailing-comma": [
+      true,
+      {
+        "multiline": "never",
+        "singleline": "never"
+      }
+    ]
   }
 }

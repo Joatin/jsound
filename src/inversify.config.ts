@@ -1,14 +1,14 @@
-import { Container } from 'inversify';
-import { Application } from './app/application';
-import * as winston from 'winston';
-import { Logger } from './app/logger';
+import { Container } from "inversify";
+import * as winston from "winston";
+import { Application } from "./app/application";
+import { Logger } from "./app/logger";
 
 const logger = new (winston.Logger)({
   transports: [
     new (winston.transports.Console)({
-      level: 'silly',
       colorize: true,
-      label: 'Server'
+      label: "Server",
+      level: "silly"
     })
   ]
 });

@@ -1,8 +1,7 @@
 
-
 export class Socket {
 
-  static initializeSocket(socket: any): Socket {
+  public static initializeSocket(socket: any): Socket {
     const sock = new Socket(socket);
     sock.init();
     return sock;
@@ -10,11 +9,11 @@ export class Socket {
 
   private constructor(
     private socket: any
-  ){}
+  ) {}
 
   public init(): void {
-    this.socket.on('getdata', ()=> {
-      console.log('getdata');
-    })
+    this.socket.on("getdata", () => {
+      // console.log("getdata");
+    });
   }
 }

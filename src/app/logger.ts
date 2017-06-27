@@ -1,19 +1,19 @@
-import winston = require('winston');
+import winston = require("winston");
 import LeveledLogMethod = winston.LeveledLogMethod;
 import LogMethod = winston.LogMethod;
 
 export abstract class Logger {
-  log: LogMethod;
+  public log: LogMethod;
 
   // for cli levels
-  error: LeveledLogMethod;
-  warn: LeveledLogMethod;
-  help: LeveledLogMethod;
-  data: LeveledLogMethod;
-  info: LeveledLogMethod;
-  debug: LeveledLogMethod;
-  prompt: LeveledLogMethod;
-  verbose: LeveledLogMethod;
-  input: LeveledLogMethod;
-  silly: LeveledLogMethod;
+  public error: LeveledLogMethod;
+  public warn: LeveledLogMethod;
+  public help: LeveledLogMethod;
+  public data: LeveledLogMethod;
+  public info: LeveledLogMethod;
+  public debug: LeveledLogMethod;
+  public prompt: LeveledLogMethod;
+  public verbose: LeveledLogMethod;
+  public input: LeveledLogMethod;
+  public silly: LeveledLogMethod;
 }
