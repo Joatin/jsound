@@ -1,15 +1,19 @@
 sudo: required
 dist: trusty
-language: node_js
-node_js:
-  - "6"
-  - "node"
-matrix:
-  fast_finish: true
-install:
-  - yarn
-script:
-  - yarn ci:travis
-cache:
-  directories:
-    - node_modules
+
+jobs:
+  include:
+    - stage: test
+      language: node_js
+      node_js:
+        - "6"
+        - "7"
+        - "node"
+      install:
+        - yarn
+      script:
+        - yarn ci:travis
+      cache:
+        directories:
+          - node_modules
+    - stage: deploy
