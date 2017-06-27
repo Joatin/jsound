@@ -11,12 +11,14 @@
     "commitmsg": "validate-commit-msg",
     "cz": "git-cz",
     "lint": "npm run tslint \"src/**/*.ts\"",
+    "lint:fix": "npm run tslint --fix ordered-imports --fix quotemark\"src/**/*.ts\"",
     "precommit": "npm run test",
     "server:dev": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/index.ts",
     "server:prod": "node dist/index.js",
     "server": "npm run server:dev",
     "start": "npm run server:dev",
-    "test": "nyc mocha --colors --compilers ts-node/register --require source-map-support/register --recursive src/**/*.specs.ts"
+    "test": "nyc mocha --colors --compilers ts-node/register --require source-map-support/register --recursive src/**/*.specs.ts",
+    "tslint": "tslint"
   },
   "repository": {
     "type": "git",
