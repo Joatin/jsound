@@ -50,11 +50,13 @@ deploy:
   skip_cleanup: true
   on:
     branch: development
+    node: '7'
 - provider: script
   script: sh ./config/deploy-production.sh
   skip_cleanup: true
   on:
     branch: master
+    node: '7'
 cache:
   yarn: true
   directories:

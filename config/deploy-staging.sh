@@ -12,7 +12,10 @@ gcloud --quiet config set container/cluster $CLUSTER_NAME
 gcloud --quiet config set compute/zone ${CLOUDSDK_COMPUTE_ZONE}
 gcloud --quiet container clusters get-credentials $CLUSTER_NAME
 
-gcloud docker -- push eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}
+docker tag eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}:$TRAVIS_COMMIT eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}:latest
+
+gcloud docker -- push eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}:$TRAVIS_COMMIT
+gcloud docker -- push eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}:latest
 
 yes | gcloud beta container images add-tag eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}:$TRAVIS_COMMIT eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}:latest
 
