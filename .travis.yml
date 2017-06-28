@@ -28,11 +28,14 @@ script:
 - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 
 before_deploy:
-- gcloud version
-- gcloud components update kubectl || true
+- sudo apt-get update
+- sudo apt-get remove google-cloud-sdk
 - curl https://sdk.cloud.google.com | bash
-- bash -l ./gcloud.sh version
-- bash -l ./gcloud.sh components update kubectl
+- exec -l $SHELL
+- gcloud init
+- gcloud components list
+- gcloud components install kubectl
+- gcloud components list
 - yarn build:prod
 
 deploy:
