@@ -18,6 +18,14 @@ env:
   - KUBE_DEPLOYMENT_NAME=jsound-client-api
   - KUBE_DEPLOYMENT_CONTAINER_NAME=jsound-client-api
   - NODE_ENV=CI
+before_install:
+- sudo apt-get remove google-cloud-sdk
+- "curl https://sdk.cloud.google.com | bash"
+- exec -l $SHELL
+- gcloud init
+- gcloud components list
+- gcloud components install kubectl
+- gcloud components list
 
 install:
 - yarn
@@ -28,13 +36,7 @@ script:
 - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 
 before_deploy:
-- sudo apt-get remove google-cloud-sdk
-- curl https://sdk.cloud.google.com | bash
-- exec -l $SHELL
-- gcloud init
-- gcloud components list
-- gcloud components install kubectl
-- gcloud components list
+
 - yarn build:prod
 
 deploy:
