@@ -1,10 +1,10 @@
-import { Socket } from './socket';
 import { injectable } from 'inversify';
+import { Socket } from './socket';
 
 @injectable()
 export abstract class Handler {
 
-  constructor(socket: Socket) {
-
+  constructor(private socket: Socket) {
+    // nothing here yet
   }
 }

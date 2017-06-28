@@ -1,4 +1,4 @@
-import winston = require("winston");
+import winston = require('winston');
 import LeveledLogMethod = winston.LeveledLogMethod;
 import LogMethod = winston.LogMethod;
 

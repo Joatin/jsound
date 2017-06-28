@@ -1,18 +1,18 @@
-import { multiInject, inject, injectable } from 'inversify';
+import { inject, injectable, multiInject } from 'inversify';
 import { Handler } from './handler';
 const sockets = {};
 
 @injectable()
 export class Socket {
 
-  private _isConnected: boolean = true;
+  private isConnectedHolder: boolean = true;
 
   public get isConnected(): boolean {
-    return this._isConnected;
+    return this.isConnectedHolder;
   }
 
   public constructor(
-    @inject("socket") private socket: any,
+    @inject('socket') private socket: any,
     @multiInject(Handler) handlers: Handler[]
   ) {}
 
