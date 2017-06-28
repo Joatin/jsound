@@ -34,9 +34,6 @@ script:
 - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 
 before_deploy:
-- gcloud --quiet components update
-- gcloud --quiet components beta update
-- gcloud --quiet components update kubectl
 - yarn build:prod
 deploy:
 - provider: releases
