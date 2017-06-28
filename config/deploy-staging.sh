@@ -17,8 +17,6 @@ docker tag eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}:$TRAVIS_COMMIT eu.gcr.
 gcloud docker -- push eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}:$TRAVIS_COMMIT
 gcloud docker -- push eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}:latest
 
-yes | gcloud beta container images add-tag eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}:$TRAVIS_COMMIT eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}:latest
-
 kubectl config view
 kubectl config current-context
 
