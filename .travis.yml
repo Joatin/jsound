@@ -46,12 +46,12 @@ deploy:
     tags: true
     node: '7'
 - provider: script
-  script: ./config/deploy-staging.sh
+  script: sh ./config/deploy-staging.sh
   skip_cleanup: true
   on:
     branch: development
 - provider: script
-  script: ./config/deploy-production.sh
+  script: sh ./config/deploy-production.sh
   skip_cleanup: true
   on:
     branch: master
