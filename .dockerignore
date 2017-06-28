@@ -1,0 +1,15 @@
+.idea/
+.nyc_output/
+coverage/
+node_modules/
+src/
+.editorconfig
+.gitattributes
+.gitignore
+.nvmrc
+.travis.yml
+LICENSE
+README.md
+tsconfig.json
+tslint.json
+typedoc.json

@@ -1,8 +1,24 @@
+sudo: false
+
 language: node_js
 node_js:
 - '6'
 - '7'
 - node
+
+services:
+- docker
+
+env:
+  global:
+  - GOOGLE_APPLICATION_CREDENTIALS=~/gcloud-service-key.json
+  - PROJECT_NAME=jsound-system
+  - CLUSTER_NAME=jsound-cluster
+  - CLOUDSDK_COMPUTE_ZONE=europe-west1-b
+  - DOCKER_IMAGE_NAME=jsound-client-api
+  - KUBE_DEPLOYMENT_NAME=jsound-client-api
+  - KUBE_DEPLOYMENT_CONTAINER_NAME=jsound-client-api
+  - NODE_ENV=CI
 
 install:
 - yarn
@@ -13,9 +29,15 @@ script:
 - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 
 before_deploy:
+- if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
+- source /home/travis/google-cloud-sdk/path.bash.inc
+- gcloud --quiet version
+- gcloud --quiet components update
+- gcloud --quiet components beta update
+- gcloud --quiet components update kubectl
 - yarn build:prod
 deploy:
-  provider: releases
+- provider: releases
   api_key:
     secure: ck+xTFbo7grQ/jVg5cB09247H5xufeZdR8774/uUs8DxNw5m6XGSt9ONG3TN2r5IzMrWUFpCO5BDGZGQl2m/h+JRl8WBsH2+I3+14zfmVWI0Fi+U+U4V0u7Sxq0VqkEgrl8ji87Fz+AhyDVumGj1aOaYNd6QXQes7YapfeDzynPpXUbNX4o0d91XiV6o1dOtPbmnQSqJE8ArVCiPlKCBgoeXaKOTXrHED8tkuyMPGkJilSoE2MbNKGAGacP4h8xGCkZNR7+aAsXofzcDddzbChfwPunWg93BKa1bJNxQ5vlSqwVca6aM3oAWcDlpCRwcaA0tq+ROQyowNJ+5kzjGkAo5nx8c0qE6UTNwi2KZOU2AQ0bwulaWM4hRwQVpKEo1pxxAMwTf4PUlaTLIYUX6K+nbaYraGVVKYmL5AEpHKHi//mVPGR6oD+iAsXaDPi+xE6CycrReh9Q/Iezgz2WqN0rJ9G56PGSxNUTjN1roXccnMkCUcr3at2eIuf4KCqa/Q75mXZOi/PQXd4ub9AnZGCPODS5F8oqNDLYARneGdXqoDA5kEoLkR7C+BQIM3a9dQc5lffsrcjygn3TMfYaXw+k8UAdxYy1jV64Op0x+40iwfrUWGHwRYQytHb2rAcJbK99jXYvc6A8a9Vqrq2V32W+BdRcqHilJ+abhhc46ycY=
   file_glob: true
@@ -24,7 +46,16 @@ deploy:
   on:
     tags: true
     node: '7'
-
+- provider: script
+  script: ./deploy-staging.sh
+  skip_cleanup: true
+  on:
+    branch: development
+- provider: script
+  script: ./deploy-production.sh
+  skip_cleanup: true
+  on:
+    branch: master
 cache:
   yarn: true
   directories:
