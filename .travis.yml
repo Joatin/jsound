@@ -24,7 +24,6 @@ addons:
   apt:
     packages:
     - google-cloud-sdk
-    - kubectl
 
 install:
 - yarn
@@ -35,6 +34,7 @@ script:
 - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 
 before_deploy:
+- gcloud components install kubectl
 - yarn build:prod
 deploy:
 - provider: releases
