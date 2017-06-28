@@ -28,7 +28,6 @@ script:
 - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 
 before_deploy:
-- sudo apt-get update
 - sudo apt-get remove google-cloud-sdk
 - curl https://sdk.cloud.google.com | bash
 - exec -l $SHELL
