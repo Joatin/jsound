@@ -34,7 +34,11 @@ script:
 - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 
 before_deploy:
-- gcloud components install kubectl
+- curl -L  https://github.com/kubernetes/kubernetes/releases/download/v<Kubernetes version./kubernetes.tar.gz > kubernetes.tar.gz
+- tar -xf kubernetes.tar.gz
+- cp kubernetes/platforms/linux/amd64/kubectl /usr/local/bin/kubectl
+- chmod +x /usr/local/bin/kubectl
+- kubectl version
 - yarn build:prod
 deploy:
 - provider: releases
