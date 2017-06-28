@@ -1,4 +1,4 @@
-sudo: false
+sudo: required
 
 language: node_js
 node_js:
@@ -11,6 +11,7 @@ services:
 
 env:
   global:
+  - CLOUDSDK_CORE_DISABLE_PROMPTS=1
   - GOOGLE_APPLICATION_CREDENTIALS=~/gcloud-service-key.json
   - PROJECT_NAME=jsound-system
   - CLUSTER_NAME=jsound-cluster
@@ -34,11 +35,11 @@ script:
 - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 
 before_deploy:
-- curl -L  https://github.com/kubernetes/kubernetes/releases/download/v<Kubernetes version./kubernetes.tar.gz > kubernetes.tar.gz
-- tar -xf kubernetes.tar.gz
-- cp kubernetes/platforms/linux/amd64/kubectl /usr/local/bin/kubectl
-- chmod +x /usr/local/bin/kubectl
-- kubectl version
+  - gcloud version
+  - gcloud components update kubectl || true
+  - curl https://sdk.cloud.google.com | bash
+  - bash -l ./gcloud.sh version
+  - bash -l ./gcloud.sh components update kubectl
 - yarn build:prod
 deploy:
 - provider: releases
