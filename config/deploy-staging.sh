@@ -17,10 +17,10 @@ docker tag eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}:$TRAVIS_COMMIT eu.gcr.
 gcloud docker -- push eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}:$TRAVIS_COMMIT
 gcloud docker -- push eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}:latest
 
-# kubectl config view
-# kubectl config current-context
+kubectl config view
+kubectl config current-context
 
-# kubectl set image deployment/${KUBE_DEPLOYMENT_NAME} ${KUBE_DEPLOYMENT_CONTAINER_NAME}=eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}:$TRAVIS_COMMIT
+kubectl set image --namespace=staging deployment/${KUBE_DEPLOYMENT_NAME} ${KUBE_DEPLOYMENT_CONTAINER_NAME}=eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}:$TRAVIS_COMMIT
 
 # sleep 30
 # npm run e2e_test
