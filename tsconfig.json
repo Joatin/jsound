@@ -7,7 +7,9 @@
       "node",
       "mocha",
       "chai",
-      "sinon"
+      "sinon",
+      "socket.io",
+      "joi"
     ],
     "module": "commonjs",
     "moduleResolution": "node",
